@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:49:06 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/16 13:59:44 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/16 14:34:01 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,10 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+struct	s_mlx_data
+{
+    
+}		t_mlx_data;
 
 #endif
