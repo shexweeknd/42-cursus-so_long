@@ -6,8 +6,15 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:48:44 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/16 10:48:58 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/16 14:22:59 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdio.h>
+
+int	main(void)
+{
+	printf("INPUT...");
+	return (0);
+}

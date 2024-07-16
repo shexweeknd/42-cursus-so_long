@@ -1,21 +1,43 @@
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror 
 
 NAME = so_long
 
-SRC = \
+SRCS = so_long.c
 
-SRC_BONUS = \
+OBJS = $(SRCS:.c=.o)
+
+.c.o:
+	@cc -c -g $(FLAGS) $(SRCS) -I ./ -I ./libft/ -I ./minilibx-linux
 
 all: $(NAME)
 
-$(NAME) : 
+$(NAME) : $(OBJS)
+	@cd minilibx-linux &&\
+	make &&\
+	cd ..
+	@cd libft &&\
+	make &&\
+	cd ..
+	@cc $(FLAGS) -g $(OBJS) -o $(NAME) -L./minilibx-linux -lmlx_Linux -lX11 -lXext -lm \
+	-L./libft -lft \
 
-.c.o:
-	@cc -c -g $(FLAGS) $(SRC) $(SRC_BONUS) -I ./ -I ./ft_printf/
+clean: $(OBJS)
+	@cd minilibx-linux &&\
+	make clean &&\
+	cd ..
+	@cd libft &&\
+	make clean &&\
+	cd ..
+	@echo $(OBJS)
+	@rm -rf $(OBJS)
 
-clean:
-fclean:
-re:
-bonus:
+fclean: clean
+	@cd libft &&\
+	make fclean &&\
+	cd ..
+	@rm -rf $(NAME)
 
-.PHONY: clean fclean all re bonus
+re: fclean
+	@make all
+
+.PHONY: clean fclean all re

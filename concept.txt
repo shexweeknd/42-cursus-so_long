@@ -1,2 +1,3 @@
 connaitre les concepts suivants:
     tiles, tilesets, des sprites et des sprite sheets
+    
