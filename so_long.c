@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:48:44 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/17 13:15:52 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:26:43 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ int	check_map(char *str)
 	if (fd < 0)
 		return (0);
 	// TODO read the file and check if any forbidden rules applied to the map is set
-	return (1);
+	return (close(fd), 1);
 }
 
+// TODO
 char	**parse_ber(char *filename)
 {
 	(void)filename;

@@ -3,6 +3,7 @@ FLAGS = -Wall -Wextra -Werror
 NAME = so_long
 
 SRCS = so_long.c \
+		so_long_render.c \
 		so_long_closing.c \
 		so_long_error.c
 
