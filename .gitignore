@@ -1,1 +1,5 @@
 minilibx-linux
+*.o
+*/*.o
+*/*/*.o
+so_long
