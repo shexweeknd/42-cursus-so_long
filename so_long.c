@@ -6,49 +6,70 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:48:44 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/17 09:11:08 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/17 13:15:52 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
 
-#define KEY_PRESS 2
-#define KEY_RELEASE 3
-#define KEY_EXIT 17
-
-int	handle_keypress(int keycode, t_mlx_data *data)
+int	verify_format(char *str)
 {
-	printf("Key pressed: %d\n", keycode);
-	if (keycode == 53 || keycode == 65307)
-		render_exit(data, "Fermeture de la fenetre...\n");
-	return (0);
+	int	name_size;
+
+	name_size = ft_strlen(str);
+	if (name_size-- < 4)
+		return (0);
+	if (str[name_size--] != 'r')
+		return (0);
+	if (str[name_size--] != 'e')
+		return (0);
+	if (str[name_size--] != 'b')
+		return (0);
+	if (str[name_size--] != '.')
+		return (0);
+	return (1);
 }
 
-int	handle_exit(void *data)
+int	check_map(char *str)
 {
-	render_exit(data, "Fermeture de la fenetre...\n");
-	return (0);
+	int	fd;
+
+	if (!verify_format(str))
+		return (0);
+	fd = open(str, O_RDONLY, NULL);
+	if (fd < 0)
+		return (0);
+	// TODO read the file and check if any forbidden rules applied to the map is set
+	return (1);
 }
 
-void	set_exit_hooks(t_mlx_data *data)
+char	**parse_ber(char *filename)
 {
-	mlx_hook(data->win, KEY_PRESS, 1L << 0, handle_keypress, data);
-	mlx_hook(data->win, KEY_EXIT, 1L << 17, handle_exit, data);
+	(void)filename;
+	return (NULL);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_mlx_data	data;
+	char		**map;
 
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (1);
-	data.win = mlx_new_window(data.mlx, 720, 480, "so_long hramaros");
+	if (argc != 2 || (argc == 2 && !check_map(argv[1])))
+		return (render_exit((void *)0, "Error\n"), 0);
+	// TODO fonction qui parse le .*ber et qui render l'ecran en fonction de
+	map = parse_ber(argv[1]);
+	if (!map)
+		return (render_exit((void *)0, "Error\n"), 0);
+	data.win = mlx_new_window(data.mlx, WIN_HEIGHT, WIN_WIDTH,
+			"so_long hramaros");
 	if (!data.win)
 		return (mlx_destroy_display(data.mlx), free(data.mlx), 1);
 	set_exit_hooks(&data);
-	// TODO affichage de pixels sur la fenetre
+	// TODO debug de put_ground_to_win
+	put_ground_to_win(&data);
 	// TODO importation d'une image sur la fenetre
 	mlx_loop(data.mlx);
 	return (mlx_destroy_window(data.mlx, data.win),
