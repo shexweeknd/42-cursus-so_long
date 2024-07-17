@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_error.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/16 10:49:06 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/17 08:34:23 by hramaros         ###   ########.fr       */
+/*   Created: 2024/07/17 08:17:37 by hramaros          #+#    #+#             */
+/*   Updated: 2024/07/17 08:39:27 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "so_long.h"
 
-# include "libft.h"
-# include "minilibx-linux/mlx.h"
-# include <math.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-
-typedef struct s_mlx_data
+void	render_exit(t_mlx_data *data, char *message)
 {
-	void	*mlx;
-	void	*win;
-}			t_mlx_data;
-
-// fonctions pour les sorties d'erreur
-void		render_exit(t_mlx_data *data, char *message);
-
-#endif
+	if (data != NULL)
+	{
+		mlx_destroy_window(data->mlx, data->win);
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+	}
+	ft_putstr(message);
+	exit(1);
+}

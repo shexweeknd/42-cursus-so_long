@@ -2,12 +2,13 @@ FLAGS = -Wall -Wextra -Werror
 
 NAME = so_long
 
-SRCS = so_long.c
+SRCS = so_long.c \
+		so_long_error.c
 
 OBJS = $(SRCS:.c=.o)
 
 .c.o:
-	@cc -c -g $(FLAGS) $(SRCS) -I ./ -I ./libft/ -I ./minilibx-linux
+	@cc -c -g $(FLAGS) $(SRCS) -I ./ -I ./libft/ -I ./libft/ft_printf/ -I ./minilibx-linux
 
 all: $(NAME)
 
