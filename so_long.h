@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:49:06 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/17 13:21:26 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/18 09:34:09 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 # define KEY_EXIT 17
 # define WIN_HEIGHT 720
 # define WIN_WIDTH 480
-# define IMG_WIDTH
-# define IMG_HEIGHT
+# define BUFFER_SIZE 1024
 
 # include "libft.h"
 # include "minilibx-linux/mlx.h"
@@ -40,6 +39,9 @@ int			handle_keypress(int keycode, t_mlx_data *data);
 int			handle_exit(void *data);
 void		set_exit_hooks(t_mlx_data *data);
 
+// fonctions pour les regles de la map
+int			map_rules(char **map);
+
 // fonctions pour les rendering d'images
 void		put_ground_to_win(t_mlx_data *data);
 void		*compute_xpm_to_win(t_mlx_data *data, int *img_width,
@@ -50,7 +52,13 @@ void		*compute_xpm_to_win(t_mlx_data *data, int *img_width,
 				int *img_height);
 void		put_ground_to_win(t_mlx_data *data);
 
+// fonctions utiles pour mlx
+void		free_mlx_data(t_mlx_data *data);
+
 // fonctions pour les sorties d'erreur
 void		render_exit(t_mlx_data *data, char *message);
+
+// fonctions pour les debug
+void		print_map(char **map);
 
 #endif

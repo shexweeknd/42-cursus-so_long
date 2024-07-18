@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   so_long_map_rules.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/19 15:00:39 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/18 09:14:16 by hramaros         ###   ########.fr       */
+/*   Created: 2024/07/18 08:32:08 by hramaros          #+#    #+#             */
+/*   Updated: 2024/07/18 09:28:00 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-size_t	ft_strlen(const char *s)
+int	map_rules(char **map)
 {
-	int	count;
-
-	if (!s)
-		return (0);
-	count = 0;
-	while (s[count])
-		count++;
-	return (count);
+	// is wall correct
+	// is one player
+	// is collectible
+	// is exit
+	// is way to exit
+	(void)map;
+	return (1);
 }

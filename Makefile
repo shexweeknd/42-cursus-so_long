@@ -5,7 +5,9 @@ NAME = so_long
 SRCS = so_long.c \
 		so_long_render.c \
 		so_long_closing.c \
-		so_long_error.c
+		so_long_error.c \
+		so_long_debug.c \
+		so_long_map_rules.c \
 
 OBJS = $(SRCS:.c=.o)
 
