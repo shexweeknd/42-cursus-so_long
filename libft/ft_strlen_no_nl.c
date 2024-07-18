@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_debug.c                                    :+:      :+:    :+:   */
+/*   ft_strlen_no_nl.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/18 08:59:42 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/18 10:30:21 by hramaros         ###   ########.fr       */
+/*   Created: 2024/07/18 10:19:20 by hramaros          #+#    #+#             */
+/*   Updated: 2024/07/18 10:33:23 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	print_map(char **map)
+size_t	ft_strlen_no_nl(const char *s)
 {
-	int	index;
+	int	count;
 
-	index = 0;
-	while (map[index])
-	{
-		ft_putstr(map[index]);
-		ft_putchar_fd('\n', 1);
-		free(map[index]);
-		index++;
-	}
-	free(map);
+	if (!s || *s == '\n')
+		return (0);
+	count = 0;
+	while (s[count] && s[count] != '\n')
+		count++;
+	return (count);
 }
