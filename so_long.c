@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:48:44 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/21 15:55:43 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/21 16:30:27 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	is_validgrid(char **grid)
 	return (1);
 }
 
-void	uniform_grid(char **grid)
+int	uniform_grid(char **grid)
 {
 	int	index;
 
@@ -129,6 +129,7 @@ void	uniform_grid(char **grid)
 			grid[index][ft_strlen_no_nl(grid[index])] = 0;
 		index++;
 	}
+	return (1);
 }
 
 int	main(int argc, char **argv)
@@ -144,10 +145,12 @@ int	main(int argc, char **argv)
 				"Error\n"), 0);
 	map.grid = malloc(sizeof(char *) * (count_lines(argv[1]) + 1));
 	if (!map.grid || !fullfill_grid(map.grid, argv[1])
-		|| !is_validgrid(map.grid))
+		|| !is_validgrid(map.grid) || !uniform_grid(map.grid))
 		return (mlx_destroy_display(data.mlx), free(data.mlx), render_exit(NULL,
 				"Error\n"), 0);
-	uniform_grid(map.grid);
+	if (!map_rules(map.grid))
+		return (ft_free_splitted(map.grid), mlx_destroy_display(data.mlx),
+			free(data.mlx), render_exit(NULL, "Error\n"), 0);
 	print_map(map.grid);
 	return (ft_free_splitted(map.grid), mlx_destroy_display(data.mlx),
 		free(data.mlx), 0);
