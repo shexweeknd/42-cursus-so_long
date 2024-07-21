@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:48:44 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/21 11:31:58 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/21 15:55:43 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ int	valid_rowcol(char **grid)
 			return (0);
 		index++;
 	}
-	while (grid[index] && (*grid[index] == '\n'))
+	while (grid[index])
 	{
-		if (ft_strlen_no_nl(grid[index]) > 0)
+		if (*grid[index] != '\n')
 			return (0);
 		index++;
 	}
@@ -113,6 +113,24 @@ int	is_validgrid(char **grid)
 	return (1);
 }
 
+void	uniform_grid(char **grid)
+{
+	int	index;
+
+	index = 0;
+	while (grid[index])
+	{
+		if (*grid[index] == '\n')
+		{
+			free(grid[index]);
+			grid[index] = NULL;
+		}
+		else
+			grid[index][ft_strlen_no_nl(grid[index])] = 0;
+		index++;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_mlx_data	data;
@@ -129,8 +147,10 @@ int	main(int argc, char **argv)
 		|| !is_validgrid(map.grid))
 		return (mlx_destroy_display(data.mlx), free(data.mlx), render_exit(NULL,
 				"Error\n"), 0);
+	uniform_grid(map.grid);
 	print_map(map.grid);
-	return (ft_free_splitted(map.grid), mlx_destroy_display(data.mlx), free(data.mlx), 0);
+	return (ft_free_splitted(map.grid), mlx_destroy_display(data.mlx),
+		free(data.mlx), 0);
 	data.win = mlx_new_window(data.mlx, WIN_HEIGHT, WIN_WIDTH,
 			"so_long hramaros");
 	if (!data.win)
