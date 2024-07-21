@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:49:06 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/18 09:34:09 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/21 10:31:28 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,20 @@ typedef struct s_mlx_data
 	void	*win;
 }			t_mlx_data;
 
+typedef struct s_map
+{
+	char	**grid;
+	int		height;
+	int		width;
+}			t_map;
+
 // fonctions pour sortir de la fenetre
 int			handle_keypress(int keycode, t_mlx_data *data);
 int			handle_exit(void *data);
 void		set_exit_hooks(t_mlx_data *data);
 
 // fonctions pour les regles de la map
-int			map_rules(char **map);
+int			map_rules(t_map *map);
 
 // fonctions pour les rendering d'images
 void		put_ground_to_win(t_mlx_data *data);

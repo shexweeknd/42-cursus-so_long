@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 08:59:42 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/18 10:30:21 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/21 11:31:17 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ void	print_map(char **map)
 	while (map[index])
 	{
 		ft_putstr(map[index]);
-		ft_putchar_fd('\n', 1);
-		free(map[index]);
 		index++;
 	}
-	free(map);
 }

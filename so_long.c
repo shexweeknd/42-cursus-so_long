@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:48:44 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/18 11:36:47 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/21 11:31:58 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	verify_format(char *str)
 	int	name_size;
 
 	name_size = ft_strlen(str);
-	if (name_size-- < 4)
+	if (name_size-- < 5)
 		return (0);
 	if (str[name_size--] != 'r')
 		return (0);
@@ -30,105 +30,107 @@ int	verify_format(char *str)
 	return (1);
 }
 
-int	open_ber(char *str)
+size_t	count_lines(char *file_path)
+{
+	int		fd;
+	char	*line;
+	size_t	result;
+
+	fd = open(file_path, O_RDONLY);
+	if (fd <= 0)
+		return (0);
+	line = get_next_line(fd);
+	if (!line)
+		return (close(fd), free(line), 0);
+	result = 1;
+	while (line)
+	{
+		result++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	return (close(fd), result);
+}
+
+int	fullfill_grid(char **grid, char *file_path)
 {
 	int	fd;
 
-	if (!verify_format(str))
+	if (!verify_format(file_path))
 		return (0);
-	fd = open(str, O_RDONLY, NULL);
-	if (fd < 0)
-		return (0);
-	return (fd);
+	fd = open(file_path, O_RDONLY);
+	if (fd <= 0)
+		return (free(grid), 0);
+	*grid = get_next_line(fd);
+	while (*grid)
+	{
+		grid++;
+		*grid = get_next_line(fd);
+	}
+	return (close(fd), 1);
 }
 
-int	get_rows_nbr(int fd)
+int	valid_rowcol(char **grid)
 {
-	int		result;
-	char	*tmp;
-
-	tmp = get_next_line(fd);
-	if (!tmp)
-		return (close(fd), 0);
-	result = 1;
-	while (tmp)
-	{
-		free(tmp);
-		tmp = get_next_line(fd);
-		result++;
-	}
-	return (result);
-}
-
-int	get_col_nbr(int fd)
-{
-	int		result;
-	char	*tmp;
-
-	tmp = get_next_line(fd);
-	if (!tmp || ft_strlen_no_nl(tmp) < 2)
-		return (close(fd), 0);
-	result = ft_strlen_no_nl(tmp);
-	while (tmp && *tmp != '\n')
-	{
-		free(tmp);
-		tmp = get_next_line(fd);
-		if (tmp && *tmp != '\n' && ft_strlen_no_nl(tmp) != (size_t)result)
-			return (free(tmp), 0);
-	}
-	while (tmp)
-	{
-		if (tmp && *tmp != '\n')
-			return (free(tmp), 0);
-		free(tmp);
-		tmp = get_next_line(fd);
-	}
-	return (result);
-}
-
-char	**parse_ber(int fd, int rows_nbr, int col_nbr)
-{
-	char	**result;
 	int		index;
-	char	*buffer;
+	size_t	col;
 
-	if (!rows_nbr || !col_nbr)
-		return (close(fd), NULL);
-	result = (char **)malloc(sizeof(char *) * (rows_nbr + 1));
-	if (!result)
-		return (close(fd), NULL);
-	result[rows_nbr] = NULL;
-	buffer = get_next_line(fd);
-	if (!buffer)
-		return (ft_free_splitted(result), close(fd), NULL);
 	index = 0;
-	while (buffer)
+	col = ft_strlen_no_nl(grid[index]);
+	while (grid[index])
 	{
-		result[index++] = buffer;
-		buffer = get_next_line(fd);
+		if (ft_strlen_no_nl(grid[index]) == 0)
+			break ;
+		if (ft_strlen_no_nl(grid[index]) != col)
+			return (0);
+		index++;
 	}
-	return (close(fd), result);
+	while (grid[index] && (*grid[index] == '\n'))
+	{
+		if (ft_strlen_no_nl(grid[index]) > 0)
+			return (0);
+		index++;
+	}
+	return (1);
+}
+
+size_t	count_rows(char **grid)
+{
+	size_t	index;
+
+	index = 0;
+	while (grid[index] && *grid[index] != '\n')
+		index++;
+	return (index);
+}
+
+int	is_validgrid(char **grid)
+{
+	if (!valid_rowcol(grid))
+		return (ft_free_splitted(grid), 0);
+	if (count_rows(grid) == ft_strlen_no_nl(grid[0]))
+		return (ft_free_splitted(grid), 0);
+	return (1);
 }
 
 int	main(int argc, char **argv)
 {
 	t_mlx_data	data;
-	char		**map;
-	int			fd;
+	t_map		map;
 
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (1);
-	fd = open_ber(argv[1]);
-	if (argc != 2 || (argc == 2 && !fd))
+	if (argc != 2)
 		return (mlx_destroy_display(data.mlx), free(data.mlx), render_exit(NULL,
 				"Error\n"), 0);
-	map = parse_ber(fd, get_rows_nbr(fd), get_col_nbr(fd));
-	if (!map || !map_rules(map))
+	map.grid = malloc(sizeof(char *) * (count_lines(argv[1]) + 1));
+	if (!map.grid || !fullfill_grid(map.grid, argv[1])
+		|| !is_validgrid(map.grid))
 		return (mlx_destroy_display(data.mlx), free(data.mlx), render_exit(NULL,
 				"Error\n"), 0);
-	print_map(map);
-	return (0);
+	print_map(map.grid);
+	return (ft_free_splitted(map.grid), mlx_destroy_display(data.mlx), free(data.mlx), 0);
 	data.win = mlx_new_window(data.mlx, WIN_HEIGHT, WIN_WIDTH,
 			"so_long hramaros");
 	if (!data.win)
