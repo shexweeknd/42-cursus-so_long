@@ -6,13 +6,13 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 08:32:08 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/22 11:39:34 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/22 14:01:58 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	grid_rules(t_map *map)
+int	grid_rules(t_mlx_data *map)
 {
 	if (!is_wall_correct(map->grid))
 		return (0);

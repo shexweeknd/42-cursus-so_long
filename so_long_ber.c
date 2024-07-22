@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:45:14 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/22 11:46:18 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/22 14:01:28 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	is_validgrid(char **grid)
 	return (1);
 }
 
-int	uniform_map(t_map *map)
+int	uniform_map(t_mlx_data *map)
 {
 	int	index;
 

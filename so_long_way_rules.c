@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:38:11 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/22 11:43:01 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/22 14:02:20 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	check_canva(char **grid)
 	return (0);
 }
 
-int	is_way_to_exit(t_map *map)
+int	is_way_to_exit(t_mlx_data *map)
 {
 	char	**canva;
 

@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:49:06 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/22 11:48:56 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/22 14:00:43 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,12 @@ typedef struct s_mlx_data
 {
 	void	*mlx;
 	void	*win;
-}			t_mlx_data;
-
-typedef struct s_map
-{
+	int		tile_x_px;
+	int		tile_y_px;
 	char	**grid;
 	int		x;
 	int		y;
-}			t_map;
+}			t_mlx_data;
 
 typedef struct s_pos
 {
@@ -57,28 +55,23 @@ int			verify_format(char *str);
 int			valid_rowcol(char **grid);
 int			fullfill_grid(char **grid, char *file_path);
 int			is_validgrid(char **grid);
-int			uniform_map(t_map *map);
+int			uniform_map(t_mlx_data *map);
 
 // fonctions utils du traitement de ber
 size_t		count_lines(char *file_path);
 size_t		count_rows(char **grid);
 
 // fonctions pour les regles de la map
-int			grid_rules(t_map *map);
+int			grid_rules(t_mlx_data *map);
 int			is_wall_correct(char **grid);
 int			is_one_player(char **grid);
 int			is_collectible(char **grid);
 int			is_exit(char **grid);
-int			is_way_to_exit(t_map *map);
-
-// fonctions pour les rendering d'images
-void		put_ground_to_win(t_mlx_data *data);
-void		*compute_xpm_to_win(t_mlx_data *data, int *img_width,
-				int *img_height);
+int			is_way_to_exit(t_mlx_data *map);
 
 // fonctions pour render les map et les images
 void		*compute_xpm_to_win(t_mlx_data *data, int *img_width,
-				int *img_height);
+				int *img_height, char *file_path);
 void		put_ground_to_win(t_mlx_data *data);
 
 // fonctions utiles pour mlx

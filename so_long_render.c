@@ -6,19 +6,17 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 11:19:43 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/22 11:44:11 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/22 13:59:11 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	*compute_xpm_to_win(t_mlx_data *data, int *img_width, int *img_height)
+void	*compute_xpm_to_win(t_mlx_data *data, int *img_width, int *img_height, char *file_path)
 {
 	void	*img;
-	char	*relative_path;
 
-	relative_path = "./assets/xpm/Hills.xpm";
-	img = mlx_xpm_file_to_image(data->mlx, relative_path, img_width,
+	img = mlx_xpm_file_to_image(data->mlx, file_path, img_width,
 			img_height);
 	if (!img)
 	{
@@ -36,14 +34,14 @@ void	put_ground_to_win(t_mlx_data *data)
 	int		x_rep;
 	int		y_rep;
 
-	img = compute_xpm_to_win(data, &x_offset, &y_offset);
+	img = compute_xpm_to_win(data, &x_offset, &y_offset, "./assets/xpm/Hills.xpm");
 	if (!img)
 		return ;
 	x_rep = 0;
-	while (x_rep < WIN_WIDTH / x_offset)
+	while (x_rep < data->x / x_offset)
 	{
 		y_rep = 0;
-		while (y_rep < WIN_HEIGHT / y_offset)
+		while (y_rep < data->y / y_offset)
 		{
 			mlx_put_image_to_window(data->mlx, data->win, img, x_rep * y_offset,
 				y_rep * y_offset);
