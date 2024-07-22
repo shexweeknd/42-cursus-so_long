@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:49:06 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/21 16:31:58 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/22 11:48:56 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,39 @@ typedef struct s_mlx_data
 typedef struct s_map
 {
 	char	**grid;
-	int		height;
-	int		width;
+	int		x;
+	int		y;
 }			t_map;
+
+typedef struct s_pos
+{
+	int		x;
+	int		y;
+}			t_pos;
 
 // fonctions pour sortir de la fenetre
 int			handle_keypress(int keycode, t_mlx_data *data);
 int			handle_exit(void *data);
 void		set_exit_hooks(t_mlx_data *data);
 
+// fonctions pour traitement de ber
+int			verify_format(char *str);
+int			valid_rowcol(char **grid);
+int			fullfill_grid(char **grid, char *file_path);
+int			is_validgrid(char **grid);
+int			uniform_map(t_map *map);
+
+// fonctions utils du traitement de ber
+size_t		count_lines(char *file_path);
+size_t		count_rows(char **grid);
+
 // fonctions pour les regles de la map
-int			map_rules(char **grid);
+int			grid_rules(t_map *map);
+int			is_wall_correct(char **grid);
+int			is_one_player(char **grid);
+int			is_collectible(char **grid);
+int			is_exit(char **grid);
+int			is_way_to_exit(t_map *map);
 
 // fonctions pour les rendering d'images
 void		put_ground_to_win(t_mlx_data *data);
@@ -66,6 +88,6 @@ void		free_mlx_data(t_mlx_data *data);
 void		render_exit(t_mlx_data *data, char *message);
 
 // fonctions pour les debug
-void		print_map(char **map);
+void		print_grid(char **map);
 
 #endif

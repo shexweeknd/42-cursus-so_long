@@ -49,6 +49,7 @@ SRC = ft_abs.c \
 	ft_putnbr_fd.c \
 	sort_long_tab.c \
 	get_twodim_size.c \
+	ft_str_twodim_dup.c \
 	get_next_line.c \
 	get_next_line_utils.c \
 

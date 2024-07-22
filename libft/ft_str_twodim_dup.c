@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_debug.c                                    :+:      :+:    :+:   */
+/*   ft_str_twodim_dup.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/18 08:59:42 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/22 11:24:15 by hramaros         ###   ########.fr       */
+/*   Created: 2024/07/22 11:02:51 by hramaros          #+#    #+#             */
+/*   Updated: 2024/07/22 11:08:21 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	print_grid(char **grid)
+char	**ft_str_twodim_dup(char **src)
 {
-	int	index;
+	char	**result;
+	int		index;
 
+	result = (char **)malloc(sizeof(char *) * (get_twodim_size(src) + 1));
+	if (!result)
+		return (NULL);
+	result[get_twodim_size(src)] = NULL;
 	index = 0;
-	while (grid[index])
+	while (*src)
 	{
-		ft_putstr(grid[index]);
-		ft_putchar_fd('\n', 1);
+		result[index] = ft_strdup(*src);
+		if (!result[index])
+			return (ft_free_splitted(result), NULL);
+		src++;
 		index++;
 	}
+	return (result);
 }

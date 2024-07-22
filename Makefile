@@ -7,7 +7,12 @@ SRCS = so_long.c \
 		so_long_closing.c \
 		so_long_error.c \
 		so_long_debug.c \
+		so_long_ber.c \
+		so_long_ber_utils.c \
 		so_long_grid_rules.c \
+		so_long_pce_rules.c \
+		so_long_wall_rules.c \
+		so_long_way_rules.c \
 
 OBJS = $(SRCS:.c=.o)
 
