@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 11:32:40 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/23 14:32:49 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:09:02 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,12 @@ int	alter_grid(t_mlx_data *data, t_pos *player_pos, int x_pos, int y_pos)
 	data->moves += 1;
 	put_elem_to_win(data, player_pos->x, player_pos->y,
 		"./assets/xpm/ground.xpm");
-	put_elem_to_win(data, x_pos, y_pos, "./assets/xpm/sprite.xpm");
+	if (player_pos->x == x_pos)
+		put_elem_to_win(data, x_pos, y_pos, "./assets/xpm/sprite_idle.xpm");
+	else if (player_pos->x < x_pos)
+		put_elem_to_win(data, x_pos, y_pos, "./assets/xpm/sprite_right.xpm");
+	else if (player_pos->x > x_pos)
+		put_elem_to_win(data, x_pos, y_pos, "./assets/xpm/sprite_left.xpm");
 	if (!is_collectible(data->grid))
 		put_elem_to_win(data, get_x(data->grid, 'E'), get_y(data->grid, 'E'),
 			"./assets/xpm/opened_door.xpm");

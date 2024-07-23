@@ -1,8 +1,0 @@
-minilibx-linux
-*.o
-*/*.o
-*/*/*.o
-so_long
-soLong
-assets/imgs
-*.a

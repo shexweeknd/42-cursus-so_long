@@ -1,5 +1,7 @@
 FLAGS = -Wall -Wextra -Werror 
 
+MINILIBX_DIR = ./minilibx-linux
+
 NAME = so_long
 
 SRCS = so_long.c \

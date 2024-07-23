@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:49:06 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/23 14:29:19 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:09:59 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 # define KEY_PRESS 2
 # define KEY_RELEASE 3
 # define KEY_EXIT 17
-# define WIN_HEIGHT 720
-# define WIN_WIDTH 480
 # define BUFFER_SIZE 1024
 
 # include "libft.h"

@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 09:22:02 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/23 14:20:05 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:12:24 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ int	handle_exit(t_mlx_data *data)
 
 void	set_hooks(t_mlx_data *data)
 {
-	mlx_hook(data->win, KEY_RELEASE, 1L << 1, handle_keyrelease, data);
+	mlx_hook(data->win, KEY_PRESS, 1L << 0, handle_keyrelease, data);
 	mlx_hook(data->win, KEY_EXIT, 1L << 17, handle_exit, data);
 }
