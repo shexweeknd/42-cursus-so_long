@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:48:44 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/22 14:00:16 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/23 09:31:15 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	set_tile_px(t_mlx_data *data)
 	int		h;
 	int		w;
 
-	img = compute_xpm_to_win(data, &w, &h, "./assets/xpm/Hills.xpm");
+	img = compute_xpm_to_win(data, &w, &h, "./assets/xpm/test.xpm");
 	if (!img)
 		return ;
 	data->tile_x_px = w;
@@ -54,13 +54,13 @@ int	main(int argc, char **argv)
 	if (!grid_rules(&data))
 		return (ft_free_splitted(data.grid), destroy_display(&data), 0);
 	set_tile_px(&data);
-	data.win = mlx_new_window(data.mlx, data.tile_y_px, data.tile_x_px,
+	data.win = mlx_new_window(data.mlx, data.tile_x_px * data.x, data.tile_y_px * data.y,
 			"so_long hramaros");
 	if (!data.win)
 		return (ft_free_splitted(data.grid), destroy_display(&data), 1);
 	set_exit_hooks(&data);
 	// TODO debug de put_ground_to_win
-	// put_ground_to_win(&data);
+	put_ground_to_win(&data);
 	render_map(&data);
 	mlx_loop(data.mlx);
 	return (ft_free_splitted(data.grid), free_mlx_data(&data), 0);

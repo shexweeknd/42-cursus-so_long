@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:49:06 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/22 14:00:43 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/23 09:14:33 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_pos
 
 // fonctions pour sortir de la fenetre
 int			handle_keypress(int keycode, t_mlx_data *data);
-int			handle_exit(void *data);
+int			handle_exit(t_mlx_data *data);
 void		set_exit_hooks(t_mlx_data *data);
 
 // fonctions pour traitement de ber

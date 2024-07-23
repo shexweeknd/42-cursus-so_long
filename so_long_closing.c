@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 09:22:02 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/22 13:59:43 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/23 09:15:30 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ int	handle_keypress(int keycode, t_mlx_data *data)
 	if (keycode == 53 || keycode == 65307)
 	{
 		ft_free_splitted(data->grid);
-		free(data);
 		render_exit(data, "Fermeture de la fenetre...\n");
 	}
 	return (0);
 }
 
-int	handle_exit(void *data)
+int	handle_exit(t_mlx_data *data)
 {
+	ft_free_splitted(data->grid);
 	render_exit(data, "Fermeture de la fenetre...\n");
 	return (0);
 }
