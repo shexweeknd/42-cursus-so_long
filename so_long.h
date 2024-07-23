@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:49:06 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/23 09:14:33 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:28:15 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,9 @@ int			is_way_to_exit(t_mlx_data *map);
 // fonctions pour render les map et les images
 void		*compute_xpm_to_win(t_mlx_data *data, int *img_width,
 				int *img_height, char *file_path);
-void		put_ground_to_win(t_mlx_data *data);
+void		put_elem_to_win(t_mlx_data *data, int x_offset, int y_offset,
+				char *xpm_path);
+void		render_map(t_mlx_data *data);
 
 // fonctions utiles pour mlx
 void		free_mlx_data(t_mlx_data *data);

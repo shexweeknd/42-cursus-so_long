@@ -4,3 +4,5 @@ minilibx-linux
 */*/*.o
 so_long
 soLong
+assets/imgs
+*.a
