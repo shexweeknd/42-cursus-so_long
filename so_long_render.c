@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 11:19:43 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/23 11:28:00 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/23 13:40:41 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,10 @@ void	render_pce(t_mlx_data *data)
 				put_elem_to_win(data, x, y, "./assets/xpm/sprite.xpm");
 			else if (data->grid[y][x] == 'C')
 				put_elem_to_win(data, x, y, "./assets/xpm/collectible.xpm");
-			else if (data->grid[y][x] == 'E')
-				put_elem_to_win(data, x, y, "./assets/xpm/door.xpm");
+			else if (data->grid[y][x] == 'E' && is_collectible(data->grid))
+				put_elem_to_win(data, x, y, "./assets/xpm/closed_door.xpm");
+			else if (data->grid[y][x] == 'E' && !is_collectible(data->grid))
+				put_elem_to_win(data, x, y, "./assets/xpm/opened_door.xpm");
 			x++;
 		}
 		y++;

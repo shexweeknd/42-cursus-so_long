@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:49:06 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/23 11:28:15 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/23 13:35:08 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_mlx_data
 	char	**grid;
 	int		x;
 	int		y;
+	int		moves;
 }			t_mlx_data;
 
 typedef struct s_pos
@@ -45,10 +46,11 @@ typedef struct s_pos
 	int		y;
 }			t_pos;
 
-// fonctions pour sortir de la fenetre
-int			handle_keypress(int keycode, t_mlx_data *data);
+// fonctions pour les hooks
+int			handle_keyrelease(int keycode, t_mlx_data *data);
+int			move_player(t_mlx_data *data, char dir);
 int			handle_exit(t_mlx_data *data);
-void		set_exit_hooks(t_mlx_data *data);
+void		set_hooks(t_mlx_data *data);
 
 // fonctions pour traitement de ber
 int			verify_format(char *str);
@@ -68,6 +70,10 @@ int			is_one_player(char **grid);
 int			is_collectible(char **grid);
 int			is_exit(char **grid);
 int			is_way_to_exit(t_mlx_data *map);
+
+// fonctions pour get les positions du player
+int			get_py(char **grid);
+int			get_px(char **grid);
 
 // fonctions pour render les map et les images
 void		*compute_xpm_to_win(t_mlx_data *data, int *img_width,

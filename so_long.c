@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:48:44 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/23 11:27:57 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/23 13:32:13 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ int	main(int argc, char **argv)
 			* data.y, "so_long hramaros");
 	if (!data.win)
 		return (ft_free_splitted(data.grid), destroy_display(&data), 1);
-	set_exit_hooks(&data);
+	set_hooks(&data);
+	data.moves = 0;
 	render_map(&data);
 	mlx_loop(data.mlx);
 	return (ft_free_splitted(data.grid), free_mlx_data(&data), 0);
