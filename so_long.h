@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:49:06 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/23 13:35:08 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:29:19 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ int			is_exit(char **grid);
 int			is_way_to_exit(t_mlx_data *map);
 
 // fonctions pour get les positions du player
-int			get_py(char **grid);
-int			get_px(char **grid);
+int			get_y(char **grid, char c);
+int			get_x(char **grid, char c);
 
 // fonctions pour render les map et les images
 void		*compute_xpm_to_win(t_mlx_data *data, int *img_width,

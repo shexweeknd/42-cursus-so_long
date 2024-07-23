@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 11:32:40 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/23 13:31:28 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:32:49 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ int	alter_grid(t_mlx_data *data, t_pos *player_pos, int x_pos, int y_pos)
 	data->grid[player_pos->y][player_pos->x] = '0';
 	data->grid[y_pos][x_pos] = 'P';
 	data->moves += 1;
+	put_elem_to_win(data, player_pos->x, player_pos->y,
+		"./assets/xpm/ground.xpm");
+	put_elem_to_win(data, x_pos, y_pos, "./assets/xpm/sprite.xpm");
+	if (!is_collectible(data->grid))
+		put_elem_to_win(data, get_x(data->grid, 'E'), get_y(data->grid, 'E'),
+			"./assets/xpm/opened_door.xpm");
 	return (1);
 }
 
@@ -47,8 +53,8 @@ int	move_player(t_mlx_data *data, char dir)
 {
 	t_pos	player_pos;
 
-	player_pos.x = get_px(data->grid);
-	player_pos.y = get_py(data->grid);
+	player_pos.x = get_x(data->grid, 'P');
+	player_pos.y = get_y(data->grid, 'P');
 	if (dir == 'u')
 		return (alter_grid(data, &player_pos, player_pos.x, player_pos.y - 1));
 	else if (dir == 'd')

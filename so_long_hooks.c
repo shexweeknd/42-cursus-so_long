@@ -6,13 +6,13 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 09:22:02 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/23 13:45:56 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:20:05 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	chek_keys_to_play(int keycode, t_mlx_data *data)
+void	check_keys_to_play(int keycode, t_mlx_data *data)
 {
 	if (keycode == 119 || keycode == 65362)
 	{
@@ -41,8 +41,7 @@ int	handle_keyrelease(int keycode, t_mlx_data *data)
 	if (keycode == 53 || keycode == 65307)
 		handle_exit(data);
 	else
-		chek_keys_to_play(keycode, data);
-	render_map(data);
+		check_keys_to_play(keycode, data);
 	if (!is_exit(data->grid))
 	{
 		ft_printf("move done: %d\nLe jeu est termine\n", data->moves);

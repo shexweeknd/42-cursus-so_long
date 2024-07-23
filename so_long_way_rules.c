@@ -6,13 +6,13 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:38:11 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/22 14:02:20 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:33:34 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	get_py(char **grid)
+int	get_y(char **grid, char c)
 {
 	int	y;
 	int	x;
@@ -23,7 +23,7 @@ int	get_py(char **grid)
 		x = 0;
 		while (grid[y][x])
 		{
-			if (grid[y][x] == 'P')
+			if (grid[y][x] == c)
 				return (y);
 			x++;
 		}
@@ -32,7 +32,7 @@ int	get_py(char **grid)
 	return (-1);
 }
 
-int	get_px(char **grid)
+int	get_x(char **grid, char c)
 {
 	int	y;
 	int	x;
@@ -43,7 +43,7 @@ int	get_px(char **grid)
 		x = 0;
 		while (grid[y][x])
 		{
-			if (grid[y][x] == 'P')
+			if (grid[y][x] == c)
 				return (x);
 			x++;
 		}
@@ -99,8 +99,8 @@ int	is_way_to_exit(t_mlx_data *map)
 	canva = ft_str_twodim_dup(map->grid);
 	if (!canva)
 		return (0);
-	flood_canva(canva, (t_pos){map->x - 1, map->y - 1}, (t_pos){get_px(canva),
-		get_py(canva)});
+	flood_canva(canva, (t_pos){map->x - 1, map->y - 1}, (t_pos){get_x(canva,
+			'P'), get_y(canva, 'P')});
 	if (!check_canva(canva))
 		return (ft_free_splitted(canva), 0);
 	return (ft_free_splitted(canva), 1);
