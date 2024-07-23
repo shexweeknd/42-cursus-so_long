@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:38:11 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/23 14:33:34 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:13:58 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	check_canva(char **grid)
 	while (grid[y])
 	{
 		x = 0;
-		while (grid[x])
+		while (grid[y][x])
 		{
 			if (grid[y][x] == 'C')
 				c_occ++;
