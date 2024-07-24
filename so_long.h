@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:49:06 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/24 11:57:35 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:15:12 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # define KEY_PRESS 2
 # define KEY_RELEASE 3
 # define KEY_EXIT 17
-# define BUFFER_SIZE 1024
 
 # include "libft.h"
 # include "minilibx-linux/mlx.h"
