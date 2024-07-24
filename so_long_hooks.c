@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 09:22:02 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/23 16:12:24 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/24 11:51:23 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	handle_keyrelease(int keycode, t_mlx_data *data)
 		handle_exit(data);
 	else
 		check_keys_to_play(keycode, data);
-	if (!is_exit(data->grid))
+	if (is_player_winning(data))
 	{
 		ft_printf("move done: %d\nLe jeu est termine\n", data->moves);
 		handle_exit(data);

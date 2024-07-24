@@ -6,50 +6,56 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 11:32:40 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/23 16:09:02 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/24 11:59:09 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	is_collectible_left(char **grid)
+void	put_player_on_door(t_mlx_data *data, t_pos *player_pos, int x_pos,
+		int y_pos)
 {
-	int	x;
-	int	y;
+	if (player_pos->x == x_pos)
+		put_elem_to_win(data, x_pos, y_pos, "./assets/xpm/si_cdoor.xpm");
+	else if (player_pos->x < x_pos)
+		put_elem_to_win(data, x_pos, y_pos, "./assets/xpm/sr_cdoor.xpm");
+	else if (player_pos->x > x_pos)
+		put_elem_to_win(data, x_pos, y_pos, "./assets/xpm/sl_cdoor.xpm");
+}
 
-	y = 0;
-	while (grid[y])
-	{
-		x = 0;
-		while (grid[y][x])
-		{
-			if (grid[y][x] == 'C')
-				return (1);
-			x++;
-		}
-		y++;
-	}
-	return (0);
+void	put_leaved_door(t_mlx_data *data, t_pos *player_pos)
+{
+	if (is_collectible(data->grid))
+		put_elem_to_win(data, player_pos->x, player_pos->y,
+			"./assets/xpm/closed_door.xpm");
+	else
+		put_elem_to_win(data, player_pos->x, player_pos->y,
+			"./assets/xpm/opened_door.xpm");
 }
 
 int	alter_grid(t_mlx_data *data, t_pos *player_pos, int x_pos, int y_pos)
 {
-	if (data->grid[y_pos][x_pos] == '1' || (data->grid[y_pos][x_pos] == 'E'
-			&& is_collectible_left(data->grid)))
+	if (data->grid[y_pos][x_pos] == '1')
 		return (0);
 	data->grid[player_pos->y][player_pos->x] = '0';
 	data->grid[y_pos][x_pos] = 'P';
 	data->moves += 1;
-	put_elem_to_win(data, player_pos->x, player_pos->y,
-		"./assets/xpm/ground.xpm");
-	if (player_pos->x == x_pos)
+	if (is_pos_on_door(data, player_pos->x, player_pos->y))
+		put_leaved_door(data, player_pos);
+	else
+		put_elem_to_win(data, player_pos->x, player_pos->y,
+			"./assets/xpm/ground.xpm");
+	if (is_pos_on_door(data, x_pos, y_pos))
+		put_player_on_door(data, player_pos, x_pos, y_pos);
+	else if (player_pos->x == x_pos)
 		put_elem_to_win(data, x_pos, y_pos, "./assets/xpm/sprite_idle.xpm");
 	else if (player_pos->x < x_pos)
 		put_elem_to_win(data, x_pos, y_pos, "./assets/xpm/sprite_right.xpm");
 	else if (player_pos->x > x_pos)
 		put_elem_to_win(data, x_pos, y_pos, "./assets/xpm/sprite_left.xpm");
-	if (!is_collectible(data->grid))
-		put_elem_to_win(data, get_x(data->grid, 'E'), get_y(data->grid, 'E'),
+	if (!is_collectible(data->grid) && !is_pos_on_door(data, player_pos->x,
+			player_pos->y))
+		put_elem_to_win(data, data->door.x, data->door.y,
 			"./assets/xpm/opened_door.xpm");
 	return (1);
 }

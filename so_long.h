@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:49:06 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/23 16:09:59 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/24 11:57:35 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@
 # include <sys/stat.h>
 # include <unistd.h>
 
+typedef struct s_pos
+{
+	int		x;
+	int		y;
+}			t_pos;
+
 typedef struct s_mlx_data
 {
 	void	*mlx;
@@ -36,19 +42,16 @@ typedef struct s_mlx_data
 	int		x;
 	int		y;
 	int		moves;
+	t_pos	door;
 }			t_mlx_data;
-
-typedef struct s_pos
-{
-	int		x;
-	int		y;
-}			t_pos;
 
 // fonctions pour les hooks
 int			handle_keyrelease(int keycode, t_mlx_data *data);
 int			move_player(t_mlx_data *data, char dir);
 int			handle_exit(t_mlx_data *data);
 void		set_hooks(t_mlx_data *data);
+int			is_player_winning(t_mlx_data *data);
+int			is_pos_on_door(t_mlx_data *data, int x, int y);
 
 // fonctions pour traitement de ber
 int			verify_format(char *str);
@@ -66,6 +69,7 @@ int			grid_rules(t_mlx_data *map);
 int			is_wall_correct(char **grid);
 int			is_one_player(char **grid);
 int			is_collectible(char **grid);
+int			is_player_winning(t_mlx_data *data);
 int			is_exit(char **grid);
 int			is_way_to_exit(t_mlx_data *map);
 

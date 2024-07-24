@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 11:19:43 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/23 16:23:02 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/24 11:26:14 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void	render_pce(t_mlx_data *data)
 
 void	render_map(t_mlx_data *data)
 {
+	data->door.x = get_x(data->grid, 'E');
+	data->door.y = get_y(data->grid, 'E');
 	render_gw(data);
 	render_pce(data);
 }
