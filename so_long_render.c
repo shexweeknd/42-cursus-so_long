@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 11:19:43 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/24 11:26:14 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/27 16:48:47 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	*compute_xpm_to_win(t_mlx_data *data, int *img_width, int *img_height,
 	if (!img)
 	{
 		ft_free_splitted(data->grid);
+		ft_printf("Unable to find %s ...\n", file_path);
 		render_exit(data, "Failed to compute image\n");
 		return (NULL);
 	}

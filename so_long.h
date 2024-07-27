@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:49:06 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/27 15:35:52 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/27 16:39:34 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,14 @@ void		print_grid(char **map);
 void		move_to_right(t_mlx_data *data, t_pos *player_pos, int x_pos,
 				int y_pos);
 void		move_to_left(t_mlx_data *data, t_pos *player_pos, int x_pos,
+				int y_pos);
+void		move_right_to_door(t_mlx_data *data, t_pos *player_pos, int x_pos,
+				int y_pos);
+void		move_left_to_door(t_mlx_data *data, t_pos *player_pos, int x_pos,
+				int y_pos);
+void		leave_door_to_right(t_mlx_data *data, t_pos *player_pos, int x_pos,
+				int y_pos);
+void		leave_door_to_left(t_mlx_data *data, t_pos *player_pos, int x_pos,
 				int y_pos);
 
 #endif

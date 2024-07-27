@@ -33,7 +33,8 @@ BONUS_SRCS = so_long.c \
 		so_long_wall_rules.c \
 		so_long_way_rules.c \
 		so_long_game_bonus.c \
-		so_long_animations_bonus.c \
+		so_long_anim_one_bonus.c \
+		so_long_anim_two_bonus.c \
 
 OBJS = $(SRCS:.c=.o)
 

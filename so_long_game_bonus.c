@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 11:32:40 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/27 15:36:05 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/27 16:37:53 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	put_player_on_door(t_mlx_data *data, t_pos *player_pos, int x_pos,
 	if (player_pos->x == x_pos)
 		put_elem_to_win(data, x_pos, y_pos, "./assets/xpm/si_cdoor.xpm");
 	else if (player_pos->x < x_pos)
-		put_elem_to_win(data, x_pos, y_pos, "./assets/xpm/sr_cdoor.xpm");
+		move_right_to_door(data, player_pos, x_pos, y_pos);
 	else if (player_pos->x > x_pos)
-		put_elem_to_win(data, x_pos, y_pos, "./assets/xpm/sl_cdoor.xpm");
+		move_left_to_door(data, player_pos, x_pos, y_pos);
 }
 
 void	put_leaved_door(t_mlx_data *data, t_pos *player_pos)
@@ -33,6 +33,20 @@ void	put_leaved_door(t_mlx_data *data, t_pos *player_pos)
 			"./assets/xpm/opened_door.xpm");
 }
 
+void	leave_door(t_mlx_data *data, t_pos *player_pos, int x_pos, int y_pos)
+{
+	if (player_pos->x < x_pos)
+		leave_door_to_right(data, player_pos, x_pos, y_pos);
+	else if (player_pos->x > x_pos)
+		leave_door_to_left(data, player_pos, x_pos, y_pos);
+	else if (player_pos->x == x_pos)
+	{
+		put_elem_to_win(data, data->door.x, data->door.y,
+			"./assets/xpm/opened_door.xpm");
+		put_elem_to_win(data, x_pos, y_pos, "./assets/xpm/sprite_idle.xpm");
+	}
+}
+
 int	alter_grid(t_mlx_data *data, t_pos *player_pos, int x_pos, int y_pos)
 {
 	if (data->grid[y_pos][x_pos] == '1')
@@ -41,7 +55,7 @@ int	alter_grid(t_mlx_data *data, t_pos *player_pos, int x_pos, int y_pos)
 	data->grid[y_pos][x_pos] = 'P';
 	data->moves += 1;
 	if (is_pos_on_door(data, player_pos->x, player_pos->y))
-		put_leaved_door(data, player_pos);
+		return (leave_door(data, player_pos, x_pos, y_pos), 1);
 	else
 		put_elem_to_win(data, player_pos->x, player_pos->y,
 			"./assets/xpm/ground.xpm");
