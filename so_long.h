@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:49:06 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/24 14:15:12 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:35:52 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,11 @@ void		render_exit(t_mlx_data *data, char *message);
 
 // fonctions pour les debug
 void		print_grid(char **map);
+
+// fonctions pour les bonus
+void		move_to_right(t_mlx_data *data, t_pos *player_pos, int x_pos,
+				int y_pos);
+void		move_to_left(t_mlx_data *data, t_pos *player_pos, int x_pos,
+				int y_pos);
 
 #endif

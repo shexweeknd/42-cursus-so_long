@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 11:32:40 by hramaros          #+#    #+#             */
-/*   Updated: 2024/07/27 14:40:30 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:36:05 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int	alter_grid(t_mlx_data *data, t_pos *player_pos, int x_pos, int y_pos)
 	else if (player_pos->x == x_pos)
 		put_elem_to_win(data, x_pos, y_pos, "./assets/xpm/sprite_idle.xpm");
 	else if (player_pos->x < x_pos)
-		put_elem_to_win(data, x_pos, y_pos, "./assets/xpm/sprite_right.xpm");
+		move_to_right(data, player_pos, x_pos, y_pos);
 	else if (player_pos->x > x_pos)
-		put_elem_to_win(data, x_pos, y_pos, "./assets/xpm/sprite_left.xpm");
+		move_to_left(data, player_pos, x_pos, y_pos);
 	if (!is_collectible(data->grid) && !is_pos_on_door(data, player_pos->x,
 			player_pos->y))
 		put_elem_to_win(data, data->door.x, data->door.y,

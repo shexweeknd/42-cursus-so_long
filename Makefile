@@ -22,6 +22,7 @@ SRCS = so_long.c \
 
 BONUS_SRCS = so_long.c \
 		so_long_game_utils.c \
+		so_long_render.c \
 		so_long_hooks.c \
 		so_long_error.c \
 		so_long_debug.c \
@@ -31,7 +32,6 @@ BONUS_SRCS = so_long.c \
 		so_long_pce_rules.c \
 		so_long_wall_rules.c \
 		so_long_way_rules.c \
-		so_long_render_bonus.c \
 		so_long_game_bonus.c \
 		so_long_animations_bonus.c \
 
