@@ -9,10 +9,12 @@ NAME 			= so_long
 
 BONUS_NAME		= so_long_bonus
 
-#FILES NAME
-SRC 			= so_long.c
+FUNC_DIR		= functions/
 
-FUNC 			= so_long_game.c \
+#FILES NAME
+MAIN_FILE		= so_long.c
+
+FUNC_FILES 		= so_long_game.c \
 				so_long_game_utils.c \
 				so_long_render.c \
 				so_long_hooks.c \
@@ -25,25 +27,11 @@ FUNC 			= so_long_game.c \
 				so_long_wall_rules.c \
 				so_long_way_rules.c \
 
-BONUS_FUNC 		= so_long_game_utils.c \
-				so_long_render.c \
-				so_long_hooks.c \
-				so_long_error.c \
-				so_long_debug.c \
-				so_long_ber.c \
-				so_long_ber_utils.c \
-				so_long_grid_rules.c \
-				so_long_pce_rules.c \
-				so_long_wall_rules.c \
-				so_long_way_rules.c \
-				so_long_game_bonus.c \
-				so_long_anim_one_bonus.c \
-				so_long_anim_two_bonus.c \
+FUNC            = $(addprefix $(FUNC_DIR), $(FUNC_FILES))
 
 #OBJECTS
-OBJS			= $(SRC:%.c=output/%.o)
-FUNC_OBJS 		= $(FUNC:%.c=output/%.o)
-FUNC_BONUS_OBJS = $(BONUS_FUNC:%.c=output/.o)
+MAIN_OBJ		= $(MAIN_FILE:%.c=output/%.o)
+FUNC_OBJS 		= $(FUNC:$(FUNC_DIR)%.c=output/%.o)
 
 #DEPENDECIES
 LIBFT_DIR 		= libft
@@ -66,11 +54,14 @@ endef
 
 define MakeLibs
 	make $(1) -C $(LIBFT_DIR)
+	if [ "$(1)" != "fclean" ]; then \
+        make $(1) -C $(MINILIBX_DIR); \
+    fi
 endef
 
 define Makebin
 	$(call MakeLibs,all)
-	$(CC) $(CFLAGS) $(LIBS) $(1) -o $(2)
+	$(CC) $(CFLAGS) $(1) $(LIBS) -o $(2)
 endef
 
 #MAIN RULES
@@ -79,15 +70,15 @@ all: $(NAME)
 output/%.o	: %.c | output
 				$(call Compile,$<,$@)
 
-output/%.o	: functions/%.c | output
+output/%.o	: $(FUNC_DIR)%.c | output
 				$(call Compile,$<,$@)
 
-$(NAME) : $(OBJS) $(FUNC_OBJS)
+$(NAME) : $(MAIN_OBJ) $(FUNC_OBJS)
 	$(call Makebin,$^,$@)
 
-clean: $(OBJS) $(FUNC_OBJS) $(BONUS_OBJS)
+clean:
 	$(call MakeLibs,clean)
-	rm -rf $(OBJS) $(FUNC_OBJS) $(BONUS_OBJS)
+	rm -rf output/*.o
 
 fclean: clean
 	$(call MakeLibs,fclean)
