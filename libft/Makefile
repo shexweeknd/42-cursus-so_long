@@ -79,6 +79,9 @@ ALLOBJS 	= $(OBJS) $(BONUS:%.c=output/%.o)
 #MAIN RULES
 all			: $(NAME)
 
+output:
+	mkdir -p output
+
 output/%.o	: functions/%.c | output
 				$(CC) $(CFLAGS) -Iincludes -o $@ -c $<
 
