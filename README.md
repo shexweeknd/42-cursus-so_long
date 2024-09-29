@@ -88,3 +88,4 @@ Licensed under the [MIT License](https://github.com/shexweeknd/blob/blob/main/LI
 
 - 42 Network for providing the project.
 - MiniLibX library for the graphics.
+- Axian Group
