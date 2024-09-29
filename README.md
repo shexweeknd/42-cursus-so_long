@@ -78,7 +78,7 @@ Replace `[map_file]` with the path to a valid map file. Here is an example:
 
 ## License
 
-![42-antananarivo-logo](https://github.com/shexweeknd/blob/blob/main/42-cursus-so_long/42-cursus-Philosophers-42-logo.png)
+![42-antananarivo-logo](https://github.com/shexweeknd/blob/blob/main/42-cursus-so_long/42-cursus-so_long-42-logo.png)
 
 This project is from 42 School Common Core Cursurs. I do not owe individually any of the concept mentionned above. Instead I owe the provided code in the repository.
 
