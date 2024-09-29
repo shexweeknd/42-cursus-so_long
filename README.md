@@ -82,7 +82,7 @@ Replace `[map_file]` with the path to a valid map file. Here is an example:
 
 This project is from 42 School Common Core Cursurs. I do not owe individually any of the concept mentionned above. Instead I owe the provided code in the repository.
 
-Licensed under the MIT License.
+Licensed under the [MIT License](https://github.com/shexweeknd/blob/blob/main/LICENSE).
 
 ## Acknowledgments
 
