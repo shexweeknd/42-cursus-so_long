@@ -8,7 +8,7 @@ This repository contains the project "so_long" from the 42 Cursus. The project i
 
 - **assets/**: Contains the game images and maps in `.ber` and `.XPM` format.
 - **includes/**: Contains the header file.
-- **libft/**: My tiny librairy of C functions.
+- **libft/**: My tiny library of C functions.
 - **Makefile**: The Makefile to compile the project.
 - **README.md**: This file, providing an overview of the project.
 
