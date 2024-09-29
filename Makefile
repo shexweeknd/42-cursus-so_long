@@ -67,11 +67,11 @@ endef
 #MAIN RULES
 all: $(NAME)
 
-output/%.o	: %.c | output
-				$(call Compile,$<,$@)
+output/%.o: %.c | output
+	$(call Compile,$<,$@)
 
-output/%.o	: $(FUNC_DIR)%.c | output
-				$(call Compile,$<,$@)
+output/%.o: $(FUNC_DIR)%.c | output
+	$(call Compile,$<,$@)
 
 $(NAME) : $(MAIN_OBJ) $(FUNC_OBJS)
 	$(call Makebin,$^,$@)
