@@ -67,6 +67,9 @@ endef
 #MAIN RULES
 all: $(NAME)
 
+output:
+	mkdir -p output
+
 output/%.o: %.c | output
 	$(call Compile,$<,$@)
 
